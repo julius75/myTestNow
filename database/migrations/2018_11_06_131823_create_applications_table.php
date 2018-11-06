@@ -19,8 +19,8 @@ class CreateApplicationsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedInteger("post_id");
             $table->foreign('post_id')->references('id')->on('posts');
-            $table->timestamp("applied_at");
-            $table->text("introduction");
+            //$table->string("applied_at")->nullable();
+            $table->string("introduction");
             $table->string("resume");
             $table->timestamps();
         });

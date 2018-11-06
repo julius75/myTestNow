@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\VerifyEmail;
 use App\User;
 use App\Http\Controllers\Controller;
+use App\verifyUser;
+use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -63,10 +67,40 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $verifyUser=verifyUser::create([
+            'user_id'=>$user->id,
+            'token'=>str_random(40)
+        ]);
+        Mail::to($user->email)->send(new VerifyEmail($user));
+        return $user;
+    }
+    public function verifyUser($token){
+        $verifyUser=verifyUser::where('token',$token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+                $verifyUser->user->verified = 1;
+                $verifyUser->user->save();
+                $status = "Your e-mail is verified. You can now login.";
+            }else{
+                $status = "Your e-mail is already verified. You can now login.";
+            }
+        }else{
+            flash('Sorry your email cannot be identified.')->error();
+            return redirect('/login');
+        }
+        flash($status);
+        return redirect('/login');
+    }
+    protected function registered(Request $request, $user)
+    {
+        $this->guard()->logout();
+        flash('We sent you an activation code. Check your email and click on the link to verify.');
+        return redirect('/login');
     }
 }

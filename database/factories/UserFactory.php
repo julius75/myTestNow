@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,14 @@ $factory->define(App\Tags::class, function (Faker $faker) {
 
 $factory->define(App\Application::class, function (Faker $faker) {
     return [
-        'user_id' => $faker->word,
-        'user_id' => $faker->word,
-        'user_id' => $faker->word,
+        //'user_id' => 'factory:App\User',
+        //'user_id'=> function() { return factory(App\User::class)->id },
+        'user_id' =>  function () {
+            return App\User::first()->id ?: factory(App\User::class)->create()->id;
+        },
+        'post_id' => App\Post::pluck('id')->random(),
+//        'applied_at' => $faker->word,
+        'introduction' => $faker->sentence,
+        'resume'=> $faker->sentence,
     ];
 });
