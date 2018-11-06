@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Mail\VerifyEmail;
+use App\Mail\VerifyMail;
 use App\User;
 use App\Http\Controllers\Controller;
 use App\verifyUser;
@@ -76,7 +77,7 @@ class RegisterController extends Controller
             'user_id'=>$user->id,
             'token'=>str_random(40)
         ]);
-        Mail::to($user->email)->send(new VerifyEmail($user));
+        Mail::to($user->email)->send(new VerifyMail($user));
         return $user;
     }
     public function verifyUser($token){

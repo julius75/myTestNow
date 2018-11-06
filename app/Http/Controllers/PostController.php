@@ -18,7 +18,11 @@ class PostController extends Controller
 
         return view('posts',compact('posts'));
     }
-
+public function post_details($id)
+{
+    $post = Post::find($id);
+    return view('show_link_details')->with('post', $post);
+}
     /**
      * Show the form for creating a new resource.
      *

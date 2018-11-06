@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
-Route::get('/post', 'PostController@index')->name('post');
+Route::get('/posts', 'PostController@index');
+
+Route::get('/posts/{id}', 'PostController@post_details')->name('posts');
