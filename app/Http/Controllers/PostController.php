@@ -28,9 +28,9 @@ public function post_details($id)
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function apply()
     {
-        //
+        return view('post_application');
     }
 
     /**

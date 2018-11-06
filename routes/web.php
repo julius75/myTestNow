@@ -25,3 +25,7 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::get('/posts', 'PostController@index');
 
 Route::get('/posts/{id}', 'PostController@post_details')->name('posts');
+
+Route::get('/posts/{id}/apply', 'PostController@apply')->name('apply');
+
+Route::get('/store', 'ApplicationController@index')->name('store');

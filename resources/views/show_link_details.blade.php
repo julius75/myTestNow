@@ -6,5 +6,8 @@
         {{$post->title}}
         {{--{{$post->applications_received_count}}--}}
     </div>
-    <button type="button" class="btn btn-info">Apply here</button>
+    <a href="/posts/{{$post->id}}/apply">
+        <button type="button" class="btn btn-info">Apply here</button>
+    </a>
+
 @endsection
