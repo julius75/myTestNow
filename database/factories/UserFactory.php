@@ -24,8 +24,12 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 $factory->define(App\Post::class, function (Faker $faker) {
     return [
-        'title' => $faker->word,
-        'description' => $faker->sentence,
+        'user_id' =>function(){
+        return factory('App\User')->create()->id;
+        },
+
+        'title' => $faker->sentence,
+        'description' => $faker->paragraph,
     ];
 });
 
@@ -37,14 +41,26 @@ $factory->define(App\Tags::class, function (Faker $faker) {
 
 $factory->define(App\Application::class, function (Faker $faker) {
     return [
-        //'user_id' => 'factory:App\User',
-        //'user_id'=> function() { return factory(App\User::class)->id },
-        'user_id' =>  function () {
-            return App\User::first()->id ?: factory(App\User::class)->create()->id;
+        'user_id' =>function(){
+            return factory('App\User')->create()->id;
         },
-        'post_id' => App\Post::pluck('id')->random(),
-//        'applied_at' => $faker->word,
+        'post_id' =>function(){
+            return factory('App\Post')->create()->id;
+        },
         'introduction' => $faker->sentence,
-        'resume'=> $faker->sentence,
+        'resume' => $faker->word,
     ];
 });
+//$factory->define(App\Application::class, function (Faker $faker) {
+//    return [
+//        //'user_id' => 'factory:App\User',
+//        //'user_id'=> function() { return factory(App\User::class)->id },
+//        'user_id' =>  function () {
+//            return App\User::first()->id ?: factory(App\User::class)->create()->id;
+//        },
+//        'post_id' => App\Post::pluck('id')->random(),
+////        'applied_at' => $faker->word,
+//        'introduction' => $faker->sentence,
+//        'resume'=> $faker->sentence,
+//    ];
+//});

@@ -15,13 +15,13 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("user_id");
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedInteger("post_id");
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->integer('user_id');
+            //$table->foreign('user_id')->references('id')->on('users');
+            $table->integer('post_id');
+           // $table->foreign('post_id')->references('id')->on('posts');
             //$table->string("applied_at")->nullable();
-            $table->string("introduction");
-            $table->string("resume");
+            $table->string('introduction');
+            $table->string('resume');
             $table->timestamps();
         });
     }

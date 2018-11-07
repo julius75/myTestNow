@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::orderBy('created_at','desc')->paginate(3);
+        $posts=Post::latest()->get();
 
         return view('posts',compact('posts'));
     }
@@ -52,7 +52,7 @@ public function post_details($id)
      */
     public function show(Post $post)
     {
-        //
+        return view('show_link_details',compact( 'post'));
     }
 
     /**
