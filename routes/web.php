@@ -34,4 +34,7 @@ Route::get('/store', 'ApplicationController@index')->name('store');
 //tags
 Route::get('/posts/{tags}/{post}', 'PostController@show')->name('show');
 
+//displays all tags
+Route::get('/posts/{tags}', 'PostController@index');
+
 //Route::get('/posts/{id}/apply', 'PostController@apply')->name('apply');

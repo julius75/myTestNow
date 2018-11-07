@@ -35,8 +35,24 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                        <li><a href="/posts">All Posts</a></li>
+                        <li style="margin-top: 9px"><a href="/posts">All Posts</a>
+                        </li>
+
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tags
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach(\App\Tags::all() as $tag)
+                                    <a class="dropdown-item" href="/posts/{{$tag->slug}}">{{$tag->name}}</a>
+                                @endforeach
+
+                            </div>
+                        </li>
                     </ul>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

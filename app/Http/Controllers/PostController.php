@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Tags;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -11,9 +12,16 @@ class PostController extends Controller
     {
         $this->middleware('auth')->only('store','index');
     }
-    public function index()
+    public function index($taggableSlug = null)
     {
-        $posts=Post::latest()->get();
+        if($taggableSlug){
+            $taggableId= Tags::where('slug',$taggableSlug)->first()->id;
+            $posts = Post::where('tag_id', $taggableId)->latest()->get();
+        }
+        else{
+            $posts=Post::latest()->get();
+        }
+
 
         return view('posts',compact('posts'));
     }
