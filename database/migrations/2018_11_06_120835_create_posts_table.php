@@ -17,7 +17,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title');
 
-           $table->integer('user_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('taggable_id');
             $table->text('description');
             $table->timestamps();
         });
