@@ -11,12 +11,17 @@ class Post extends Model
     ];
 
    public  function path(){
-       return '/posts/'.$this->id;
+       return '/posts/'. $this->tags .$this->id;
    }
+
+//    public function tags()
+//    {
+//        return $this->morphToMany(Tags::class, 'taggable');
+//    }
 
     public function tags()
     {
-        return $this->morphToMany(Tags::class, 'taggable');
+        return $this->belongsTo(Tags::class);
     }
 
     public function user()

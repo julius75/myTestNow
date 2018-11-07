@@ -42,7 +42,7 @@ public function post_details($id)
     {
         $post = Post::create([
             'user_id'=> auth()->id(),
-//            'title'=>$request('uuu')
+//            'taggle'=>$request('uuu')
         ]);
     }
 
@@ -52,7 +52,7 @@ public function post_details($id)
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show( Post $post)
     {
         return view('show_link_details',compact( 'post'));
     }

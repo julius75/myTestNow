@@ -38,8 +38,10 @@ $factory->define(App\Post::class, function (Faker $faker) {
 });
 
 $factory->define(App\Tags::class, function (Faker $faker) {
+    $name =$faker->word;
     return [
-        'name' => $faker->word,
+        'name' => $name,
+        'slug'=>$name
     ];
 });
 
