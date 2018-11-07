@@ -26,7 +26,7 @@
                         <h4 class="text-lg-center">Application for the post</h4>
                         <hr>
                         <div>
-                            <a href="/posts/{{$post->id}}/apply">
+                            {{--<a href="{{$post->path()}}/apply">--}}
                             <button type="button" class="btn btn-info btn-block">Click to Apply</button>
                             </a>
                         </div>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use\App\Tags;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -11,7 +11,7 @@ class Post extends Model
     ];
 
    public  function path(){
-       return '/posts/'. $this->tags .$this->id;
+       return "/posts/{$this->tag->slug}/{$this->id}";
    }
 
 //    public function tags()
@@ -19,14 +19,14 @@ class Post extends Model
 //        return $this->morphToMany(Tags::class, 'taggable');
 //    }
 
-    public function tags()
+    public function tag()
     {
         return $this->belongsTo(Tags::class);
     }
 
-    public function user()
+    public function creator()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 

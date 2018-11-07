@@ -24,9 +24,14 @@ Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/posts', 'PostController@index');
 
-Route::get('/posts/{tags}', 'PostController@show')->name('show');
+//Route::get('/posts/{post}', 'PostController@show')->name('show');
 
-Route::get('/posts/{id}/apply', 'PostController@apply')->name('apply');
+//Route::get('/posts/{tags}/{post}/apply', 'PostController@apply')->name('apply');
 
-//Route::get('/posts/{}/apply', 'PostController@apply')->name('apply');
+
 Route::get('/store', 'ApplicationController@index')->name('store');
+
+//tags
+Route::get('/posts/{tags}/{post}', 'PostController@show')->name('show');
+
+//Route::get('/posts/{id}/apply', 'PostController@apply')->name('apply');

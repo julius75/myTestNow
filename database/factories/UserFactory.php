@@ -28,7 +28,7 @@ $factory->define(App\Post::class, function (Faker $faker) {
         return factory('App\User')->create()->id;
         },
 
-        'taggable_id'=>function(){
+        'tag_id'=>function(){
         return factory('App\Tags')->create()->id;
     },
 

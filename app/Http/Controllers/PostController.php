@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('store');
+        $this->middleware('auth')->only('store','index');
     }
     public function index()
     {
@@ -38,13 +38,13 @@ public function post_details($id)
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $post = Post::create([
-            'user_id'=> auth()->id(),
-//            'taggle'=>$request('uuu')
-        ]);
-    }
+//    public function store(Request $request)
+//    {
+//        $post = Post::create([
+//            'user_id'=> auth()->id(),
+////            'taggle'=>$request('uuu')
+//        ]);
+//    }
 
     /**
      * Display the specified resource.
@@ -52,7 +52,7 @@ public function post_details($id)
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show( Post $post)
+    public function show($taggableId, Post $post)
     {
         return view('show_link_details',compact( 'post'));
     }

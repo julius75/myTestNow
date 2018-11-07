@@ -15,7 +15,7 @@ class Tags extends Model
         /**
          * Get all of the posts that are assigned this tag.
          */
-        return $this->morphedByMany(Post::class, 'taggable');
+//        return $this->morphedByMany(Post::class, 'taggable');
     }
 
 
