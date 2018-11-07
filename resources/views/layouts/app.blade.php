@@ -53,6 +53,9 @@
                         </li>
                     </ul>
 
+                    <li class="nav-item active">
+                        <a class="nav-link" href="create">Create Post </a>
+                    </li>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -84,6 +87,7 @@
                             </li>
                         @endguest
                     </ul>
+
                 </div>
             </div>
         </nav>

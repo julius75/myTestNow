@@ -40,19 +40,27 @@ public function post_details($id)
         return view('post_application');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-//    public function store(Request $request)
-//    {
-//        $post = Post::create([
-//            'user_id'=> auth()->id(),
-////            'taggle'=>$request('uuu')
-//        ]);
-//    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'description'=> 'required',
+            'tag_id' => 'required|exists:tags,id',
+        ]);
+        $post = new Post;
+        $post->user_id = auth()->id;
+        $post->tag_id = $request->tag_id;
+        $post->title = $request->title;
+        $post->description= $request->description;
+        $post->save();
+
+        // Store data for only a single request and destory
+        Session::flash( 'sucess', 'Post published.' );
+
+
+        return back();
+    }
 
     /**
      * Display the specified resource.
@@ -65,37 +73,23 @@ public function post_details($id)
         return view('show_link_details',compact( 'post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Post $post)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
+    public function create()
+    {
+        return view('new_post');
+    }
     public function update(Request $request, Post $post)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Post $post)
-    {
-        //
-    }
+
+//    public function destroy(Post $post)
+//    {
+//        //
+//    }
 }

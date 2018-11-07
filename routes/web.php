@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 
 Route::get('/posts', 'PostController@index');
+Route::get('/posts/create', 'PostController@create')->name('create');
 
 //Route::get('/posts/{post}', 'PostController@show')->name('show');
 
