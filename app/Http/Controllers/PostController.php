@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('store');
     }
     public function index()
     {
@@ -40,7 +40,10 @@ public function post_details($id)
      */
     public function store(Request $request)
     {
-
+        $post = Post::create([
+            'user_id'=> auth()->id(),
+//            'title'=>$request('uuu')
+        ]);
     }
 
     /**

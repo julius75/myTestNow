@@ -16,6 +16,7 @@
                 </div>
             </div>
 
+        @if(auth()->check())
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -35,7 +36,9 @@
 
             </div>
         </div>
+            @else
+        <p class="text-sm-center"><a href="{{route('login')}}">Create account to apply</a></p>
+            @endif
         </div>
-    </div>
 @endsection
 
