@@ -10,9 +10,10 @@ class Post extends Model
         'title', 'decsription',
     ];
 
-    /**
-     * Get all of the tags for the post.
-     */
+   public  function path(){
+       return '/posts/'.$this->id;
+   }
+
     public function tags()
     {
         return $this->morphToMany(Tags::class, 'taggable');
@@ -22,4 +23,6 @@ class Post extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+
 }

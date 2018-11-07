@@ -15,7 +15,10 @@
                             @if(count($posts)>=1)
                             @foreach($posts as $post)
                                 <article>
-                                    <h4>{{$post->title}}</h4>
+                                    <h4>
+                                    <a href="{{$post->path()}}">
+                                   {{$post->title}}
+                                    </a></h4>
                                     <div class="card-body">{{$post->description}}</div>
                                 </article>
                                     <hr>
