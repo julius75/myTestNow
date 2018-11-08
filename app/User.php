@@ -37,8 +37,5 @@ class User extends Authenticatable
         return $this->hasOne('App\VerifyUser');
     }
 
-    public function routeNotificationForSlack($driver)
-    {
-        return 'https://hooks.slack.com/services/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';
-    }
+
 }

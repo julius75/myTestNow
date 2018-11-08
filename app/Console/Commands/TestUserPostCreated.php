@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Notifications\SlackNotification;
+use App\Post;
 use App\User;
 use Illuminate\Console\Command;
 
@@ -39,7 +40,7 @@ class TestUserPostCreated extends Command
      */
     public function handle()
     {
-        User::find(1)->notify(new SlackNotification());
+        Post::find(1)->notify(new SlackNotification());
         //$user->notify(new InvoicePaid($invoice));
     }
 }

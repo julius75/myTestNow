@@ -3,9 +3,14 @@
 namespace App;
 use\App\Tags;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
 
 class Post extends Model
+
 {
+    use Notifiable;
+
     protected $fillable = [
         'title', 'decsription',
     ];
@@ -29,5 +34,9 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function routeNotificationForSlack($driver)
+    {
+        return "https://hooks.slack.com/services/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";
+    }
 
 }
