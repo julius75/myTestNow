@@ -11,9 +11,18 @@
 |
 */
 
+use App\Notifications\TaskCompleted;
+use App\User;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', function () {
+    User::find(1)->notify(new TaskCompleted());
+    return view('welcome');
+});
+
 
 Auth::routes();
 
