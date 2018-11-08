@@ -34,6 +34,7 @@ class SlackNotification extends Notification
     }
     public function toSlack($notifiable)
     {
+        //dd($notifiable);
         return (new SlackMessage)
             ->content('A new post has been created!');
     }
