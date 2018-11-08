@@ -50,4 +50,15 @@ class Post extends Model
        // return "https://hooks.slack.com/services/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";
     }
 
+    public function subscriptions(){
+       return $this->hasMany(PostSubsciption::class);
+    }
+
+    public function subscribe($user_id = null){
+
+        $this->subscriptions()->create([
+      'user_id'=>$user_id? : auth()->id()
+        ]);
+    }
+
 }
