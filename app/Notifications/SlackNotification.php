@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class SlackNotification extends Notification implements ShouldQueue
+class SlackNotification extends Notification
 {
     use Queueable;
 
@@ -34,8 +34,8 @@ class SlackNotification extends Notification implements ShouldQueue
     }
     public function toSlack($notifiable)
     {
-        //dd($notifiable);
+//        dd($notifiable->user);
         return (new SlackMessage)
-            ->content('A new post has been created!');
+            ->content('A new post has been created! ' . $notifiable->creator->name);
     }
 }

@@ -41,6 +41,8 @@ Route::get('/posts/create', 'PostController@create')->name('create');
 
 Route::get('/store', 'ApplicationController@index')->name('store');
 
+//Route::post('/posts/{tags}/{post}/subscriptions', 'SubsciptionController@store')->middleware('auth');
+
 //tags
 Route::get('/posts/{tags}/{post}', 'PostController@show')->name('show');
 

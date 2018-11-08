@@ -22,6 +22,9 @@
                                     <div class="card-body">{{$post->description}}</div>
                                 </article>
                                     <hr>
+                                    <div>
+                                    <button class="btn-btn-default">Subscribe</button>
+                                    </div>
                             @endforeach
                             @else
                                 <p>No Posts yet submitted</p>

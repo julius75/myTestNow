@@ -78,8 +78,8 @@ class RegisterController extends Controller
             'user_id'=>$user->id,
             'token'=>str_random(40)
         ]);
-        Notification::send($user, new TaskCompleted());
-       // Mail::to($user->email)->send(new VerifyMail($user));
+        //Notification::send($user, new TaskCompleted());
+        Mail::to($user->email)->send(new VerifyMail($user));
         return $user;
     }
     public function verifyUser($token){
